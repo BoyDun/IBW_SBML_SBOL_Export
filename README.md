@@ -6,7 +6,7 @@ To enhance its compatibility with biological modeling standards, I present two f
 Supplementary code that I’ve written includes an export wizard for the user to interface with the conversion functionality and a function to fetch Synbiohub SBOL sequences from any relevant URIs provided in the IBL model to be compiled. I use the JSBML library for SBML conversion and updated the existing SBOL library to libSBOLj 2.0.
 ## Getting Started
 ToDo
-## Running the Tests
+## Running the Examples
 ToDo
 ## Built With
 * [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)

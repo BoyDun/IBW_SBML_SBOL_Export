@@ -33,13 +33,6 @@ import org.jacop.search.IndomainMin
 import org.jacop.search.InputOrderSelect
 import org.jacop.search.Search
 import org.jacop.search.SelectChoicePoint
-import org.sbolstandard.core.Collection
-import org.sbolstandard.core.DnaComponent
-import org.sbolstandard.core.SBOLDocument
-import org.sbolstandard.core.SBOLFactory
-import org.sbolstandard.core.SequenceAnnotation
-import org.sbolstandard.core.StrandType
-import org.sbolstandard.core.util.SequenceOntology
 import roadblock.bin.BinaryPathProvider
 import roadblock.biocompiler.util.BiocompilerUtil
 import roadblock.biocompiler.util.EncodedImages
@@ -57,6 +50,9 @@ import roadblock.emf.ibl.Ibl.IblFactory
 import roadblock.emf.ibl.Ibl.Model
 import roadblock.emf.ibl.Ibl.MolecularSpecies
 import roadblock.emf.ibl.Ibl.Region
+import org.sbolstandard.core2.SBOLReader
+import org.synbiohub.frontend.SynBioHubFrontend
+
 
 @Data class RestrictionEnzyme {
 	String name
@@ -165,8 +161,6 @@ class Biocompiler {
 		// write biocompiler results
 		utils.toFile(workspacePath + "results.html", biocompiler.makeResultPage)
 
-		// write solution as SBOL
-		SBOLFactory.write(biocompiler.makeSBOLDocument, new FileOutputStream(workspacePath + 'ATGC_SBOL.xml'));
 	}
 
 	new(Model emfModel) {
@@ -611,6 +605,7 @@ class Biocompiler {
 		val builtinUser = 'atgc://user-submitted/part/'
 		val partsregistry = 'http://parts.igem.org/part:'
 		val ncl = 'http://sbol.ncl.ac.uk:8081/part/'
+		val synbiohub = 'https://synbiohub.org/'
 		for (part : allParts) {
 			log.addText("Looking up sequence for " + part.name)
 			if (part.sequence == null || part.sequence == '') {
@@ -629,6 +624,9 @@ class Biocompiler {
 					}
 					case url.toLowerCase.startsWith(ncl): {
 						part.sequence = getSequenceFromNCL(url.substring(ncl.length))
+					}
+					case url.toLowerCase.startsWith(synbiohub): {
+						part.sequence = getSequenceFromSynbiohub(url)
 					}
 					default: {
 						throw new MalFormedURI(part.name, part.accessionURL)
@@ -686,18 +684,35 @@ class Biocompiler {
 
 	def private static getSequenceFromNCL(String partName) {
 
-		var String sequence
+    	var String sequence = ""
+    	try {
+    		var url = new URL("http://sbol.ncl.ac.uk:8081/part/" + partName + "/sbol").openStream()
+    		var sbol = SBOLReader.read(url)
+    		var sequences = sbol.getSequences()
+    		sequence = sequences.iterator().next().getElements()
+    	} catch (Exception e) {
+    		System.out.println(e)
+    		throw new UnknownPartInVirtualPartRepository(partName)
+    	}
+
+    	return sequence
+	}
+
+	def private static getSequenceFromSynbiohub(String partName) {
+		
+		var String sequence = ""
 		try {
-			var url = new URL("http://sbol.ncl.ac.uk:8081/part/" + partName + "/sbol").openStream
-			var reader = SBOLFactory.createReader
-			var sbol = reader.read(url)
-			sequence = ((sbol?.contents?.get(0) as Collection)?.components?.get(0) as DnaComponent)?.dnaSequence?.
-				nucleotides
+			val front = new SynBioHubFrontend('https://synbiohub.org/')
+			var sbol = front.getSBOL(new URI(partName))
+			var sequences = sbol.getSequences()
+			sequence = sequences.iterator().next().getElements()
 		} catch (Exception e) {
+			System.out.println(e)
 			throw new UnknownPartInVirtualPartRepository(partName)
 		}
 
 		return sequence
+		
 	}
 
 	def addStartCodonToCDS() { // add a start codon to GENEs if not present
@@ -803,77 +818,6 @@ class Biocompiler {
 					}
 
 				}
-
-			}
-
-			/**************************************************************************************************************
-			 * 
-			 * 						SBOL EXPORT
-			 */
-			// export biocompiler model to an SBOL document
-			def SBOLDocument makeSBOLDocument() {
-				var document = SBOLFactory.createDocument
-				for (cell : biocompilerModel.cells) {
-					var dnaComponent = SBOLFactory.createDnaComponent
-					dnaComponent.URI = URI.create('ATGC://' + cell.name)
-					dnaComponent => [
-						description = 'Cell: ' + cell.name
-						name = cell.name
-						displayId = cell.name
-					]
-
-					// gather all parts in that cell
-					val ArrayList<Biopart> allParts = new ArrayList()
-					for (device : cell.devices)
-						allParts.addAll(device.parts)
-
-					var wholeSequence = SBOLFactory.createDnaSequence
-					wholeSequence.nucleotides = allParts.sortBy[position.value].map[sequence].reduce[a, b|a + b].
-						toLowerCase
-					wholeSequence.URI = URI.create('http://sbols.org/seq#' + wholeSequence.nucleotides)
-					dnaComponent.dnaSequence = wholeSequence
-
-					var sequenceStart = 1
-					for (part : allParts.sortBy[position.value]) {
-						dnaComponent.addAnnotation(
-							makeAnnotation(part, sequenceStart, sequenceStart + part.sequence.length - 1))
-						sequenceStart = sequenceStart + part.sequence.length - 1
-					}
-					document.addContent(dnaComponent)
-
-				}
-
-				return document // only export construct for the last cell for the time being
-			}
-
-			def private static SequenceAnnotation makeAnnotation(Biopart part, int sequenceStart, int sequenceEnd) {
-				var annotation = SBOLFactory.createSequenceAnnotation
-				annotation.URI = URI.create("http://sbols.org/anot#" + utils.randomHashLookingString)
-				annotation => [
-					bioStart = sequenceStart
-					bioEnd = sequenceEnd
-					strand = if(part.direction == 1) StrandType.POSITIVE else StrandType.NEGATIVE
-				]
-				var dnaComponent = SBOLFactory.createDnaComponent()
-
-				if (part.accessionURL == null || part.accessionURL == '')
-					dnaComponent.URI = URI.create("http://sbols.org/" + part.name + "/dnaComponent")
-				else
-					dnaComponent.URI = URI.create(part.accessionURL)
-
-				dnaComponent => [displayId = part.name name = part.name]
-
-				// use the predefined SequenceOntology constant
-				switch (part.biologicalFunction) {
-					case 'PROMOTER': dnaComponent.addType(SequenceOntology.PROMOTER)
-					case 'GENE': dnaComponent.addType(SequenceOntology.CDS)
-					case 'RBS': dnaComponent.addType(SequenceOntology.type("SO_0000139"))
-					case 'TERMINATOR': dnaComponent.addType(SequenceOntology.TERMINATOR)
-					default: dnaComponent.addType(URI.create("http://purl.obolibrary.org/obo/SO_0000110"))
-				}
-
-				annotation.setSubComponent(dnaComponent);
-				return annotation;
 
 			}
 

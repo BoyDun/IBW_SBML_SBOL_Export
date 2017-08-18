@@ -47,9 +47,9 @@ public class SBML_Export {
 	private static int version = 1;
 	
 	/**
-	 * This helper function turns a string into an SBOL-compatible ID.
+	 * This helper function turns a string into an SBML-compatible ID.
 	 * 
-	 * @param displayId is the ID to be made SBOL-compatible if in an improper format / null
+	 * @param displayId is the ID to be made SBML-compatible if in an improper format / null
 	 * @return the fixed displayId
 	 */
 	private static String fixDisplayID(String displayId) {

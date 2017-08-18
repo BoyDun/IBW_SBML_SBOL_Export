@@ -11,6 +11,7 @@ ToDo
 * [JSBML](https://github.com/sbmlteam/jsbml)
 ## Authors
 * Peter Dun, bodun@stanford.edu
+
 Feel free to reach out with any questions, comments, suggestions, bug reports, etc.
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/LICENSE) file for more details.

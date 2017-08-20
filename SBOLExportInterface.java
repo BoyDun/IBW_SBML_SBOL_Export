@@ -14,25 +14,24 @@ import roadblock.dataprocessing.export.SBOL_Export;
 import roadblock.emf.ibl.Ibl.Model;
 import roadblock.resource.IblResourceObservable;
 
-
 public class SBOLExportInterface {
 
 	/**
 	 * Verifies the user-submitted namespace is valid for SBOL
 	 * 
-	 * @param namespace is the user-submitted namespace
+	 * @param namespace
+	 *            is the user-submitted namespace
 	 * @return if the namespace is valid or not
 	 */
 	public static boolean verifyNamespace(String namespace) {
-		try{
+		try {
 			new SBOLDocument().setDefaultURIprefix(namespace);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Appends a backslash to the path name if not present.
 	 * 
@@ -40,10 +39,12 @@ public class SBOLExportInterface {
 	 * @return the fixed path
 	 */
 	private static String fixPath(String path) {
-		if (path.charAt(path.length() - 1) == '/') return path;
-		else return path + '/';
+		if (path.charAt(path.length() - 1) == '/')
+			return path;
+		else
+			return path + '/';
 	}
-	
+
 	/**
 	 * Appends the ".xml" extension onto a file name if not present.
 	 * 
@@ -51,14 +52,16 @@ public class SBOLExportInterface {
 	 * @return the fixed name
 	 */
 	private static String fixName(String name) {
-		if(name.length() > 3 && name.substring(name.length() - 4).equals(".xml")) return name;
+		if (name.length() > 3 && name.substring(name.length() - 4).equals(".xml"))
+			return name;
 		return name + ".xml";
 	}
-	
+
 	/**
-	 * Interfaces between the export wizard and conversion functionality. Fetches the proper IBLResource if
-	 * not present. The created SBOL document includes information from the biocompiled model if the user
-	 * wishes, and it gets saved to the specified path and file name.
+	 * Interfaces between the export wizard and conversion functionality. Fetches
+	 * the proper IBLResource if not present. The created SBOL document includes
+	 * information from the biocompiled model if the user wishes, and it gets saved
+	 * to the specified path and file name.
 	 * 
 	 * @param path
 	 * @param name
@@ -80,8 +83,7 @@ public class SBOLExportInterface {
 				SBOLDocument doc;
 				if (!compile) {
 					doc = SBOL_Export.makeSBOLDocument(emfModel, null, namespace);
-				}
-				else {
+				} else {
 					Biocompiler biocompiler = new Biocompiler(emfModel);
 					biocompiler.gatherParts();
 					biocompiler.compile();
@@ -96,5 +98,5 @@ public class SBOLExportInterface {
 		}
 		return false;
 	}
-	
+
 }

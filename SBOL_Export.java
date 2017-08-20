@@ -69,7 +69,7 @@ public class SBOL_Export {
 	 * @param displayID is the ID to give to the component definition
 	 * @param bioType is the type of the component definition to be created
 	 * @param wasDerived is an optional string specifying the originating URI of the component definition
-	 * @param reportMissing is a boolean to note if no existing component definition is found for wasDerived
+	 * @param reportMissing is a boolean that notes if no existing component definition is found for wasDerived
 	 * @return the fetched or newly created component definition
 	 * @throws Exception
 	 */

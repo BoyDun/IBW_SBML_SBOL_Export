@@ -29,7 +29,7 @@ public class SBOLExportWizardPage extends WizardFileSystemResourceExportPage1 {
 	private boolean toBiocompile = false;
 
 	/**
-	 * Helper function that checks if all necessary fields of the page are filled
+	 * A helper function that checks if all necessary fields of the page are filled
 	 * 
 	 * @return
 	 */

@@ -14,7 +14,7 @@ import roadblock.emf.ibl.Ibl.Model;
 import roadblock.resource.IblResourceObservable;
 
 public class SBMLExportInterface {
-	
+
 	/**
 	 * Appends a backslash to the path name if not present.
 	 * 
@@ -22,10 +22,12 @@ public class SBMLExportInterface {
 	 * @return the fixed path
 	 */
 	private static String fixPath(String path) {
-		if (path.charAt(path.length() - 1) == '/') return path;
-		else return (path + "/");
+		if (path.charAt(path.length() - 1) == '/')
+			return path;
+		else
+			return (path + "/");
 	}
-	
+
 	/**
 	 * Appends the ".xml" extension onto a file name if not present.
 	 * 
@@ -33,14 +35,16 @@ public class SBMLExportInterface {
 	 * @return the fixed name
 	 */
 	private static String fixName(String name) {
-		if(name.length() > 3 && name.substring(name.length() - 4).equals(".xml")) return name;
+		if (name.length() > 3 && name.substring(name.length() - 4).equals(".xml"))
+			return name;
 		return name + ".xml";
 	}
-	
+
 	/**
-	 * Interfaces between the export wizard and conversion functionality. Fetches the proper IBLResource if
-	 * not present, and converts either the hierarchical or flattened EMF model depending on the user's
-	 * choice. The created SBML document then gets saved to the specified path and file name.
+	 * Interfaces between the export wizard and conversion functionality. Fetches
+	 * the proper IBLResource if not present, and converts either the hierarchical
+	 * or flattened EMF model depending on the user's choice. The created SBML
+	 * document then gets saved to the specified path and file name.
 	 * 
 	 * @param path
 	 * @param name
@@ -60,9 +64,9 @@ public class SBMLExportInterface {
 				SBMLWriter writer = new SBMLWriter();
 				if (toFlatten) {
 					FlatModel emfFlatModel = ModelCache.getInstance().getFlatModel(currentIblResource);
-					writer.writeSBMLToFile(SBML_Export.makeSBMLDocument(null, emfFlatModel), fixPath(path) + fixName(name));
-				}
-				else {
+					writer.writeSBMLToFile(SBML_Export.makeSBMLDocument(null, emfFlatModel),
+							fixPath(path) + fixName(name));
+				} else {
 					Model emfModel = ModelCache.getInstance().getModel(currentIblResource);
 					writer.writeSBMLToFile(SBML_Export.makeSBMLDocument(emfModel, null), fixPath(path) + fixName(name));
 				}
@@ -74,5 +78,5 @@ public class SBMLExportInterface {
 		}
 		return false;
 	}
-	
+
 }

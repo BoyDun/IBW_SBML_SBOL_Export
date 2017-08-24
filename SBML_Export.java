@@ -42,9 +42,11 @@ public class SBML_Export {
 	// Helper marker for uniqifying display IDs via incrementation
 	private static int ID = 1;
 	// SBML level
-	private static int level = 3;
+	private final static int level = 3;
 	// Version of components being created
-	private static int version = 1;
+	private final static int version = 1;
+	
+	private final static double molMultiplier = 6.0221415;
 
 	/**
 	 * This helper function turns a string into an SBML-compatible ID.
@@ -139,35 +141,6 @@ public class SBML_Export {
 	 *            the model where the units are defined.
 	 */
 	private static void createUnits(Model m) {
-		UnitDefinition ud1 = m.createUnitDefinition("M");
-		ud1.createUnit(Kind.MOLE);
-		// Unit u1b = ud1.createUnit(Kind.LITRE);
-		// u1b.setExponent(-1.0);
-		UnitDefinition ud2 = m.createUnitDefinition("mM");
-		Unit u2a = ud2.createUnit(Kind.MOLE);
-		u2a.setScale(-3);
-		// Unit u2b = ud2.createUnit(Kind.LITRE);
-		// u2b.setExponent(-1.0);
-		UnitDefinition ud3 = m.createUnitDefinition("uM");
-		Unit u3a = ud3.createUnit(Kind.MOLE);
-		u3a.setScale(-6);
-		// Unit u3b = ud3.createUnit(Kind.LITRE);
-		// u3b.setExponent(-1.0);
-		UnitDefinition ud4 = m.createUnitDefinition("nM");
-		Unit u4a = ud4.createUnit(Kind.MOLE);
-		u4a.setScale(-9);
-		// Unit u4b = ud4.createUnit(Kind.LITRE);
-		// u4b.setExponent(-1.0);
-		UnitDefinition ud5 = m.createUnitDefinition("pM");
-		Unit u5a = ud5.createUnit(Kind.MOLE);
-		u5a.setScale(-12);
-		// Unit u5b = ud5.createUnit(Kind.LITRE);
-		// u5b.setExponent(-1.0);
-		UnitDefinition ud6 = m.createUnitDefinition("fM");
-		Unit u6a = ud6.createUnit(Kind.MOLE);
-		u6a.setScale(-15);
-		// Unit u6b = ud6.createUnit(Kind.LITRE);
-		// u6b.setExponent(-1.0);
 		UnitDefinition ud7 = m.createUnitDefinition("MOLECULE");
 		ud7.createUnit(Kind.ITEM);
 		UnitDefinition ud8 = m.createUnitDefinition("fL");
@@ -191,18 +164,20 @@ public class SBML_Export {
 	 */
 	private static Species createSpecies(MolecularSpecies ms, String displayID, Model model, Compartment compartment) {
 		Species species = model.createSpecies(displayID, compartment);
-		species.setHasOnlySubstanceUnits(false);
 		species.setBoundaryCondition(false);
 		species.setConstant(false);
-		if (ms.getAmount() != 0)
-			species.setInitialAmount(ms.getAmount());
-		else
-			species.setInitialAmount(0);
+		species.setUnits("MOLECULE");
+		species.setHasOnlySubstanceUnits(true);
+		species.setInitialAmount(ms.getAmount());
 		if (ms.getUnit() != null) {
 			String unit = ms.getUnit().getLiteral();
-			species.setUnits(unit);
-			if (unit == "MOLECULE")
-				species.setHasOnlySubstanceUnits(true);
+			//10^23/10^15 due to conversion to molecules per femtoliter
+			if (unit.equals("M")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, 8));
+			else if (unit.equals("mM")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, 5));
+			else if (unit.equals("uM")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, 2));
+			else if (unit.equals("nM")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, -1));
+			else if (unit.equals("pM")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, -4));
+			else if (unit.equals("fM")) species.setInitialAmount(species.getInitialAmount() * molMultiplier * Math.pow(10, -7));
 		}
 		return species;
 	}
@@ -233,10 +208,10 @@ public class SBML_Export {
 			Model subModel, Compartment compartment, CompModelPlugin plugin) {
 		String mName = fixDisplayID(ms.getDisplayName());
 		// Device species
-		createSpecies(ms, displayId, subModel, compartment);
-		if (model.containsSpecies(mName + "_molecule")) {
+		if (!subModel.containsSpecies(displayId)) createSpecies(ms, displayId, subModel, compartment);
+		if (model.containsSpecies(displayId)) {
 			// Cell species
-			Species replacementSpecies = model.getSpecies(mName + "_molecule");
+			Species replacementSpecies = model.getSpecies(displayId);
 			CompSBasePlugin speciesPlugin = getCompSBasePlugin(replacementSpecies);
 
 			Port speciesPort = plugin.createPort();
@@ -295,7 +270,8 @@ public class SBML_Export {
 		for (String reactant : stoichReactants.keySet()) {
 			int frequency = stoichReactants.get(reactant).intValue();
 			totalFFreq += frequency;
-			equation += ("*" + reactant + "^" + frequency);
+			equation += ("*" + reactant);
+			if (frequency > 1) equation += ("^" + frequency);
 		}
 		totalFFreq--;
 
@@ -304,29 +280,31 @@ public class SBML_Export {
 		Unit fTime = fUnitDef.createUnit(Kind.SECOND);
 		fTime.setExponent(-1.0);
 		if (r.getForwardRateUnit().getRateTimeUnit().toString().equals("PER_MINUTE")) {
-			fTime.setMultiplier(60.0);
+			forward.setValue(forward.getValue() / 60);
 		}
-		String unitString = r.getForwardRateUnit().getRateConcentrationUnit().toString();
-		Unit fAmount;
-		if (unitString.equals("PER_MOLECULE")) {
-			fAmount = fUnitDef.createUnit(Kind.ITEM);
-		} else {
-			equation += ("*" + compartment.getId() + "^" + totalFFreq);
-			fAmount = fUnitDef.createUnit(Kind.MOLE);
-			if (unitString.equals("PER_M"))
-				fAmount.setScale(0);
-			else if (unitString.equals("PER_MM"))
-				fAmount.setScale(-3);
-			else if (unitString.equals("PER_UM"))
-				fAmount.setScale(-6);
-			else if (unitString.equals("PER_NM"))
-				fAmount.setScale(-9);
-			else if (unitString.equals("PER_PM"))
-				fAmount.setScale(-12);
-			else if (unitString.equals("PER_FM"))
-				fAmount.setScale(-15);
+		if (totalFFreq > 0) {
+			Unit fAmount = fUnitDef.createUnit(Kind.ITEM);
+			String fUnitString = r.getForwardRateUnit().getRateConcentrationUnit().toString();
+			if (!fUnitString.equals("PER_MOLECULE")) {
+				double conversion = 1;
+				if (fUnitString.equals("PER_M"))
+					//10^23/10^15 due to conversion to molecules per femtoliter
+					conversion = Math.pow(10, 8);
+				else if (fUnitString.equals("PER_MM"))
+					conversion = Math.pow(10, 5);
+				else if (fUnitString.equals("PER_UM"))
+					conversion = Math.pow(10, 2);
+				else if (fUnitString.equals("PER_NM"))
+					conversion = Math.pow(10, -1);
+				else if (fUnitString.equals("PER_PM"))
+					conversion = Math.pow(10, -4);
+				else if (fUnitString.equals("PER_FM"))
+					conversion = Math.pow(10, -5);
+				
+				forward.setValue(forward.getValue() / Math.pow(molMultiplier * conversion, totalFFreq));
+			}
+			fAmount.setExponent((double) -totalFFreq);
 		}
-		fAmount.setExponent((double) -totalFFreq);
 		forward.setUnits(newDisplayID + "_forward");
 
 		HashMap<String, Integer> stoichProducts = new HashMap<String, Integer>();
@@ -351,7 +329,8 @@ public class SBML_Export {
 			for (String product : stoichProducts.keySet()) {
 				int frequency = stoichProducts.get(product).intValue();
 				totalRFreq += frequency;
-				equation += ("*" + product + "^" + frequency);
+				equation += ("*" + product);
+				if (frequency > 1) equation += ("^" + frequency);
 			}
 			totalRFreq--;
 
@@ -360,32 +339,34 @@ public class SBML_Export {
 			Unit rTime = rUnitDef.createUnit(Kind.SECOND);
 			rTime.setExponent(-1.0);
 			if (r.getReverseRateUnit().getRateTimeUnit().toString().equals("PER_MINUTE")) {
-				rTime.setMultiplier(60.0);
+				reverse.setValue(reverse.getValue() / 60);
 			}
-			String rUnitString = r.getReverseRateUnit().getRateConcentrationUnit().toString();
-			Unit rAmount;
-			if (rUnitString.equals("PER_MOLECULE")) {
-				rAmount = rUnitDef.createUnit(Kind.ITEM);
-			} else {
-				equation += ("*" + compartment.getId() + "^" + totalRFreq);
-				rAmount = rUnitDef.createUnit(Kind.MOLE);
-				if (rUnitString.equals("PER_M"))
-					rAmount.setScale(0);
-				else if (rUnitString.equals("PER_MM"))
-					rAmount.setScale(-3);
-				else if (rUnitString.equals("PER_UM"))
-					rAmount.setScale(-6);
-				else if (rUnitString.equals("PER_NM"))
-					rAmount.setScale(-9);
-				else if (rUnitString.equals("PER_PM"))
-					rAmount.setScale(-12);
-				else if (rUnitString.equals("PER_FM"))
-					rAmount.setScale(-15);
+			if (totalRFreq > 0) {
+				Unit rAmount = rUnitDef.createUnit(Kind.ITEM);
+				String rUnitString = r.getReverseRateUnit().getRateConcentrationUnit().toString();
+				//equation += ("*" + compartment.getId() + "^" + (totalFFreq + 1));
+				if (!rUnitString.equals("PER_MOLECULE")) {
+					double conversion = 1;
+					if (rUnitString.equals("PER_M"))
+						conversion = Math.pow(10, 8);
+					else if (rUnitString.equals("PER_MM"))
+						conversion = Math.pow(10, 5);
+					else if (rUnitString.equals("PER_UM"))
+						conversion = Math.pow(10, 2);
+					else if (rUnitString.equals("PER_NM"))
+						conversion = Math.pow(10, -1);
+					else if (rUnitString.equals("PER_PM"))
+						conversion = Math.pow(10, -4);
+					else if (rUnitString.equals("PER_FM"))
+						conversion = Math.pow(10, -5);
+					
+					reverse.setValue(reverse.getValue() / Math.pow(molMultiplier * conversion, totalRFreq));
+				}
+				rAmount.setExponent((double) -totalRFreq);
 			}
-			rAmount.setExponent((double) -totalRFreq);
 			reverse.setUnits(newDisplayID + "_reverse");
-		} else
-			reaction.setReversible(false);
+		} 
+		else reaction.setReversible(false);
 
 		// Set kinetic law
 		ASTNode law = parseFormula(equation);
@@ -410,7 +391,7 @@ public class SBML_Export {
 	}
 
 	/**
-	 * This function parses the input and output lists of a group of devices,
+	 * This function parses the input, output, and part bodubodunlists of a group of devices,
 	 * mapping the Species to the proper parent Cell Species. It creates Reactions
 	 * from the Device RuleLists and maps a newly created Device Compartment to the
 	 * parent Cell Compartment.
@@ -432,6 +413,7 @@ public class SBML_Export {
 			String deviceName = fixDisplayID(d.getDisplayName());
 			Model dModel = compDoc.createModelDefinition(deviceName);
 			dModel.setTimeUnits(Kind.SECOND);
+			dModel.setExtentUnits(Kind.ITEM);
 			createUnits(dModel);
 			CompModelPlugin dModelPlugin = getCompModelPlugin(dModel);
 			Submodel dSubmodel = new Submodel(deviceName + "_submodel", level, version);
@@ -452,12 +434,16 @@ public class SBML_Export {
 
 			convertMolecules(d.getMoleculeList(), dModel, dCompartment);
 
+			for (MolecularSpecies ms: d.getPartList()) {
+				setReplacement(ms, fixDisplayID(ms.getDisplayName()) + "_molecule", deviceName + "_submodel", cModel,
+						dModel, dCompartment, dModelPlugin);
+			}
 			for (MolecularSpecies ms : d.getInputList()) {
-				setReplacement(ms, fixDisplayID(ms.getDisplayName()) + "_input", deviceName + "_submodel", cModel,
+				setReplacement(ms, fixDisplayID(ms.getDisplayName()) + "_molecule", deviceName + "_submodel", cModel,
 						dModel, dCompartment, dModelPlugin);
 			}
 			for (MolecularSpecies ms : d.getOutputList()) {
-				setReplacement(ms, fixDisplayID(ms.getDisplayName()) + "_output", deviceName + "_submodel", cModel,
+				setReplacement(ms, fixDisplayID(ms.getDisplayName()) + "_molecule", deviceName + "_submodel", cModel,
 						dModel, dCompartment, dModelPlugin);
 			}
 
@@ -485,6 +471,7 @@ public class SBML_Export {
 			String cellName = fixDisplayID(c.getDisplayName());
 			Model cModel = compDoc.createModelDefinition(cellName);
 			cModel.setTimeUnits(Kind.SECOND);
+			cModel.setExtentUnits(Kind.ITEM);
 			createUnits(cModel);
 			Compartment cCompartment = cModel.createCompartment(cellName + "_compartment");
 			cCompartment.setConstant(true);
@@ -498,12 +485,7 @@ public class SBML_Export {
 			cSubmodel.setModelRef(c.getDisplayName());
 			bModelPlugin.addSubmodel(cSubmodel);
 
-			// DNA created in devices
-			for (MolecularSpecies ms : c.getMoleculeList()) {
-				if (ms.getBiologicalType() == "DNA")
-					continue;
-				createSpecies(ms, fixDisplayID(ms.getDisplayName()) + "_molecule", cModel, cCompartment);
-			}
+			convertMolecules(c.getMoleculeList(), cModel, cCompartment);
 
 			for (Rule r : c.getRuleList()) {
 				setRule(r, cModel, cCompartment);
@@ -532,6 +514,7 @@ public class SBML_Export {
 			String regionName = fixDisplayID(r.getDisplayName());
 			Model rModel = compDoc.createModelDefinition(regionName);
 			rModel.setTimeUnits(Kind.SECOND);
+			rModel.setExtentUnits(Kind.ITEM);
 			createUnits(rModel);
 			CompModelPlugin rModelPlugin = getCompModelPlugin(rModel);
 
@@ -569,6 +552,7 @@ public class SBML_Export {
 		String modelName = (model != null ? fixDisplayID(model.getDisplayName()) : "Flat_Model");
 		Model bioModel = doc.createModel(modelName);
 		bioModel.setTimeUnits(Kind.SECOND);
+		bioModel.setExtentUnits(Kind.ITEM);
 		createUnits(bioModel);
 
 		CompModelPlugin bModelPlugin = getCompModelPlugin(bioModel);
@@ -577,6 +561,8 @@ public class SBML_Export {
 		if (model == null) {
 			Compartment bCompartment = bioModel.createCompartment("Flat_Model_compartment");
 			bCompartment.setConstant(true);
+			bCompartment.setUnits("fL");
+			bCompartment.setSize(1.0);
 			convertMolecules(flatModel.getMoleculeList(), bioModel, bCompartment);
 			for (Rule r : flatModel.getRuleList()) {
 				setRule(r, bioModel, bCompartment);
@@ -597,6 +583,8 @@ public class SBML_Export {
 			// Compartment only needed to contain devices or molecules
 			Compartment cCompartment = bioModel.createCompartment(modelName + "_compartment");
 			cCompartment.setConstant(true);
+			cCompartment.setUnits("fL");
+			cCompartment.setSize(1.0);
 			CompSBasePlugin cBasePlugin = getCompSBasePlugin(cCompartment);
 			if (devices != null && !devices.isEmpty()) {
 				convertDevices(devices, bioModel, bModelPlugin, cBasePlugin, compDoc);

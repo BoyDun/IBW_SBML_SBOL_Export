@@ -1,0 +1,806 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sbol="http://sbols.org/v2#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:prov="http://www.w3.org/ns/prov#">
+  <sbol:ModuleDefinition rdf:about="file://test.com/cell/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/cell"/>
+    <sbol:displayId>cell</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/GFP/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/GFP"/>
+        <sbol:displayId>GFP</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/GFP/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/TetR_TetR/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/TetR_TetR"/>
+        <sbol:displayId>TetR_TetR</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/TetR_TetR/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/LacI_LacI/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/LacI_LacI"/>
+        <sbol:displayId>LacI_LacI</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/LacI_LacI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/gfp/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/gfp"/>
+        <sbol:displayId>gfp</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/gfp"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/CI_CI/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/CI_CI"/>
+        <sbol:displayId>CI_CI</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/CI_CI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/TetR/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/TetR"/>
+        <sbol:displayId>TetR</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/TetR/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/LacI/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/LacI"/>
+        <sbol:displayId>LacI</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/LacI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/cell/CI/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/CI"/>
+        <sbol:displayId>CI</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/CI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/cI_degradation/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/cI_degradation"/>
+        <sbol:displayId>cI_degradation</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/cI_degradation/CI_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/cI_degradation/CI_reactant"/>
+            <sbol:displayId>CI_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/CI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/lac_dimerization/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/lac_dimerization"/>
+        <sbol:displayId>lac_dimerization</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/lac_dimerization/LacI_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/lac_dimerization/LacI_reactant"/>
+            <sbol:displayId>LacI_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/LacI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/lac_dimerization/LacI_LacI_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/lac_dimerization/LacI_LacI_product"/>
+            <sbol:displayId>LacI_LacI_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/cell/LacI_LacI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/tetR_dimerization/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/tetR_dimerization"/>
+        <sbol:displayId>tetR_dimerization</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/tetR_dimerization/TetR_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/tetR_dimerization/TetR_reactant"/>
+            <sbol:displayId>TetR_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/TetR/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/tetR_dimerization/TetR_TetR_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/tetR_dimerization/TetR_TetR_product"/>
+            <sbol:displayId>TetR_TetR_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/cell/TetR_TetR/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/cI_dimerization/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/cI_dimerization"/>
+        <sbol:displayId>cI_dimerization</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/cI_dimerization/CI_CI_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/cI_dimerization/CI_CI_product"/>
+            <sbol:displayId>CI_CI_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/cell/CI_CI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/cI_dimerization/CI_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/cI_dimerization/CI_reactant"/>
+            <sbol:displayId>CI_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/CI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/lac_degradation/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/lac_degradation"/>
+        <sbol:displayId>lac_degradation</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/lac_degradation/LacI_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/lac_degradation/LacI_reactant"/>
+            <sbol:displayId>LacI_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/LacI/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/gfp_degradation/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/gfp_degradation"/>
+        <sbol:displayId>gfp_degradation</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/gfp_degradation/GFP_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/gfp_degradation/GFP_reactant"/>
+            <sbol:displayId>GFP_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/GFP/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/cell/tetR_degradation/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/tetR_degradation"/>
+        <sbol:displayId>tetR_degradation</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000176"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/cell/tetR_degradation/TetR_reactant/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/tetR_degradation/TetR_reactant"/>
+            <sbol:displayId>TetR_reactant</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000010"/>
+            <sbol:participant rdf:resource="file://test.com/cell/TetR/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:module>
+      <sbol:Module rdf:about="file://test.com/cell/operon_2_module/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_2_module"/>
+        <sbol:displayId>operon_2_module</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon_2/1"/>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon_2_module/LacI/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_2_module/LacI"/>
+            <sbol:displayId>LacI</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon_2/LacI_output/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/LacI/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon_2_module/CI_CI/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_2_module/CI_CI"/>
+            <sbol:displayId>CI_CI</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon_2/CI_CI_input/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/CI_CI/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+      </sbol:Module>
+    </sbol:module>
+    <sbol:module>
+      <sbol:Module rdf:about="file://test.com/cell/operon1_module/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon1_module"/>
+        <sbol:displayId>operon1_module</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon1/1"/>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon1_module/LacI_LacI/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon1_module/LacI_LacI"/>
+            <sbol:displayId>LacI_LacI</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon1/LacI_LacI_input/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/LacI_LacI/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon1_module/TetR/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon1_module/TetR"/>
+            <sbol:displayId>TetR</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon1/TetR_output/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/TetR/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+      </sbol:Module>
+    </sbol:module>
+    <sbol:module>
+      <sbol:Module rdf:about="file://test.com/cell/operon_3_module/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_3_module"/>
+        <sbol:displayId>operon_3_module</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon_3/1"/>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon_3_module/TetR_TetR/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_3_module/TetR_TetR"/>
+            <sbol:displayId>TetR_TetR</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon_3/TetR_TetR_input/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/TetR_TetR/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+        <sbol:mapsTo>
+          <sbol:MapsTo rdf:about="file://test.com/cell/operon_3_module/CI/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/cell/operon_3_module/CI"/>
+            <sbol:displayId>CI</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:refinement rdf:resource="http://sbols.org/v2#verifyIdentical"/>
+            <sbol:remote rdf:resource="file://test.com/operon_3/CI_output/1"/>
+            <sbol:local rdf:resource="file://test.com/cell/CI/1"/>
+          </sbol:MapsTo>
+        </sbol:mapsTo>
+      </sbol:Module>
+    </sbol:module>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="file://test.com/The_EMF_Model">
+    <sbol:persistentIdentity rdf:resource="file://test.com/The_EMF_Model"/>
+    <sbol:displayId>The_EMF_Model</sbol:displayId>
+    <sbol:module>
+      <sbol:Module rdf:about="file://test.com/The_EMF_Model/site_module">
+        <sbol:persistentIdentity rdf:resource="file://test.com/The_EMF_Model/site_module"/>
+        <sbol:displayId>site_module</sbol:displayId>
+        <sbol:definition rdf:resource="file://test.com/site"/>
+      </sbol:Module>
+    </sbol:module>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="file://test.com/operon_2/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon_2"/>
+    <sbol:displayId>operon_2</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_2/operon_2_parts/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/operon_2_parts"/>
+        <sbol:displayId>operon_2_parts</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon_2_parts"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_2/CI_CI_input/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/CI_CI_input"/>
+        <sbol:displayId>CI_CI_input</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/CI_CI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#in"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_2/LacI_output/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/LacI_output"/>
+        <sbol:displayId>LacI_output</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/LacI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#out"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon_2/CI_CI_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/CI_CI_interaction"/>
+        <sbol:displayId>CI_CI_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000168"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_2/CI_CI_interaction/CI_CI_modifier/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/CI_CI_interaction/CI_CI_modifier"/>
+            <sbol:displayId>CI_CI_modifier</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000019"/>
+            <sbol:participant rdf:resource="file://test.com/operon_2/CI_CI_input/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_2/CI_CI_interaction/operon_2_parts_modified/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/CI_CI_interaction/operon_2_parts_modified"/>
+            <sbol:displayId>operon_2_parts_modified</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000644"/>
+            <sbol:participant rdf:resource="file://test.com/operon_2/operon_2_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon_2/LacI_output_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/LacI_output_interaction"/>
+        <sbol:displayId>LacI_output_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_2/LacI_output_interaction/LacI_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/LacI_output_interaction/LacI_product"/>
+            <sbol:displayId>LacI_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/operon_2/LacI_output/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_2/LacI_output_interaction/operon_2_parts_template/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_2/LacI_output_interaction/operon_2_parts_template"/>
+            <sbol:displayId>operon_2_parts_template</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000645"/>
+            <sbol:participant rdf:resource="file://test.com/operon_2/operon_2_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="file://test.com/operon1/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon1"/>
+    <sbol:displayId>operon1</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon1/LacI_LacI_input/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1/LacI_LacI_input"/>
+        <sbol:displayId>LacI_LacI_input</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/LacI_LacI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#in"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon1/operon1_parts/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1/operon1_parts"/>
+        <sbol:displayId>operon1_parts</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon1_parts"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon1/TetR_output/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1/TetR_output"/>
+        <sbol:displayId>TetR_output</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/TetR/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#out"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon1/LacI_LacI_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1/LacI_LacI_interaction"/>
+        <sbol:displayId>LacI_LacI_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000168"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon1/LacI_LacI_interaction/operon1_parts_modified/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon1/LacI_LacI_interaction/operon1_parts_modified"/>
+            <sbol:displayId>operon1_parts_modified</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000644"/>
+            <sbol:participant rdf:resource="file://test.com/operon1/operon1_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon1/LacI_LacI_interaction/LacI_LacI_modifier/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon1/LacI_LacI_interaction/LacI_LacI_modifier"/>
+            <sbol:displayId>LacI_LacI_modifier</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000019"/>
+            <sbol:participant rdf:resource="file://test.com/operon1/LacI_LacI_input/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon1/TetR_output_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1/TetR_output_interaction"/>
+        <sbol:displayId>TetR_output_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon1/TetR_output_interaction/TetR_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon1/TetR_output_interaction/TetR_product"/>
+            <sbol:displayId>TetR_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/operon1/TetR_output/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon1/TetR_output_interaction/operon1_parts_template/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon1/TetR_output_interaction/operon1_parts_template"/>
+            <sbol:displayId>operon1_parts_template</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000645"/>
+            <sbol:participant rdf:resource="file://test.com/operon1/operon1_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="file://test.com/operon_3/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon_3"/>
+    <sbol:displayId>operon_3</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_3/CI_output/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/CI_output"/>
+        <sbol:displayId>CI_output</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/CI/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#out"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_3/TetR_TetR_input/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/TetR_TetR_input"/>
+        <sbol:displayId>TetR_TetR_input</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/TetR_TetR/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#in"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="file://test.com/operon_3/operon_3_parts/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/operon_3_parts"/>
+        <sbol:displayId>operon_3_parts</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/operon_3_parts"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon_3/TetR_TetR_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/TetR_TetR_interaction"/>
+        <sbol:displayId>TetR_TetR_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000168"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_3/TetR_TetR_interaction/operon_3_parts_modified/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/TetR_TetR_interaction/operon_3_parts_modified"/>
+            <sbol:displayId>operon_3_parts_modified</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000644"/>
+            <sbol:participant rdf:resource="file://test.com/operon_3/operon_3_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_3/TetR_TetR_interaction/TetR_TetR_modifier/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/TetR_TetR_interaction/TetR_TetR_modifier"/>
+            <sbol:displayId>TetR_TetR_modifier</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000019"/>
+            <sbol:participant rdf:resource="file://test.com/operon_3/TetR_TetR_input/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="file://test.com/operon_3/CI_output_interaction/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/CI_output_interaction"/>
+        <sbol:displayId>CI_output_interaction</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_3/CI_output_interaction/CI_product/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/CI_output_interaction/CI_product"/>
+            <sbol:displayId>CI_product</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="file://test.com/operon_3/CI_output/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="file://test.com/operon_3/CI_output_interaction/operon_3_parts_template/1">
+            <sbol:persistentIdentity rdf:resource="file://test.com/operon_3/CI_output_interaction/operon_3_parts_template"/>
+            <sbol:displayId>operon_3_parts_template</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000645"/>
+            <sbol:participant rdf:resource="file://test.com/operon_3/operon_3_parts/1"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+  </sbol:ModuleDefinition>
+  <sbol:ModuleDefinition rdf:about="file://test.com/site/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/site"/>
+    <sbol:displayId>site</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:module>
+      <sbol:Module rdf:about="file://test.com/site/cell_module/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/site/cell_module"/>
+        <sbol:displayId>cell_module</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="file://test.com/cell"/>
+      </sbol:Module>
+    </sbol:module>
+  </sbol:ModuleDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/operon_3_parts/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon_3_parts"/>
+    <sbol:displayId>operon_3_parts</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000804"/>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon_3_parts/Ptet_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3_parts/Ptet_subcomponent"/>
+        <sbol:displayId>Ptet_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/Ptet"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon_3_parts/cI_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3_parts/cI_subcomponent"/>
+        <sbol:displayId>cI_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/cI"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="file://test.com/operon_3_parts/Ptet_cI_constraint/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_3_parts/Ptet_cI_constraint"/>
+        <sbol:displayId>Ptet_cI_constraint</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="file://test.com/operon_3_parts/Ptet_subcomponent/1"/>
+        <sbol:object rdf:resource="file://test.com/operon_3_parts/cI_subcomponent/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/CI_CI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/CI_CI"/>
+    <sbol:displayId>CI_CI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Complex"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/lacI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/lacI"/>
+    <sbol:displayId>lacI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_C0012"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000704"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/TetR_TetR/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/TetR_TetR"/>
+    <sbol:displayId>TetR_TetR</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Complex"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/cI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/cI"/>
+    <sbol:displayId>cI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_K105004"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000704"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/LacI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/LacI"/>
+    <sbol:displayId>LacI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/LacI_LacI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/LacI_LacI"/>
+    <sbol:displayId>LacI_LacI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Complex"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/Ptet/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/Ptet"/>
+    <sbol:displayId>Ptet</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_R0040"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/Plac/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/Plac"/>
+    <sbol:displayId>Plac</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_R0010"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/gfp/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/gfp"/>
+    <sbol:displayId>gfp</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_E0040"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000704"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/operon1_parts/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon1_parts"/>
+    <sbol:displayId>operon1_parts</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000804"/>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon1_parts/Plac_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1_parts/Plac_subcomponent"/>
+        <sbol:displayId>Plac_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/Plac"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon1_parts/tetR_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1_parts/tetR_subcomponent"/>
+        <sbol:displayId>tetR_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/tetR"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="file://test.com/operon1_parts/Plac_tetR_constraint/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon1_parts/Plac_tetR_constraint"/>
+        <sbol:displayId>Plac_tetR_constraint</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="file://test.com/operon1_parts/Plac_subcomponent/1"/>
+        <sbol:object rdf:resource="file://test.com/operon1_parts/tetR_subcomponent/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/operon_2_parts/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/operon_2_parts"/>
+    <sbol:displayId>operon_2_parts</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000804"/>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon_2_parts/lacI_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2_parts/lacI_subcomponent"/>
+        <sbol:displayId>lacI_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/lacI"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="file://test.com/operon_2_parts/Plambda_subcomponent/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2_parts/Plambda_subcomponent"/>
+        <sbol:displayId>Plambda_subcomponent</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:access rdf:resource="http://sbols.org/v2#private"/>
+        <sbol:definition rdf:resource="file://test.com/Plambda"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="file://test.com/operon_2_parts/Plambda_lacI_constraint/1">
+        <sbol:persistentIdentity rdf:resource="file://test.com/operon_2_parts/Plambda_lacI_constraint"/>
+        <sbol:displayId>Plambda_lacI_constraint</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="file://test.com/operon_2_parts/Plambda_subcomponent/1"/>
+        <sbol:object rdf:resource="file://test.com/operon_2_parts/lacI_subcomponent/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/tetR/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/tetR"/>
+    <sbol:displayId>tetR</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_C0040"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000704"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/CI/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/CI"/>
+    <sbol:displayId>CI</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/GFP/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/GFP"/>
+    <sbol:displayId>GFP</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/Plambda/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/Plambda"/>
+    <sbol:displayId>Plambda</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <prov:wasDerivedFrom rdf:resource="http://parts.igem.org/Part:BBa_R0051"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="file://test.com/TetR/1">
+    <sbol:persistentIdentity rdf:resource="file://test.com/TetR"/>
+    <sbol:displayId>TetR</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+</rdf:RDF>

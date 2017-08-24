@@ -1,0 +1,101 @@
+define ToggleSwitchCell typeof CELL()
+{
+	Plac    = PROMOTER(URI="http://parts.igem.org/Part:BBa_R0010")
+	Plambda = PROMOTER(URI="http://parts.igem.org/Part:BBa_R0051")
+	cI      = GENE(URI="http://parts.igem.org/Part:BBa_K105004")
+	gfp     = GENE(URI="http://parts.igem.org/Part:BBa_E0040")
+	lacI    = GENE(URI="http://parts.igem.org/Part:BBa_C0012")
+
+	GFP    = PROTEIN(concentration=9.620e0 uM)
+	LacI   = PROTEIN(concentration=1.920e-1 uM)
+	CI = PROTEIN(concentration=6.312e0 uM)
+
+	IPTG = MOLECULE()
+	aTc  = MOLECULE()
+
+	RULE iptg_induction : IPTG + LacI <-> LacI~IPTG
+	iptg_induction.forwardRate = 1e0 min-1
+	iptg_induction.backwardRate = 50 min-1
+
+	RULE atc_induction : aTc + CI <-> aTc~CI
+	atc_induction.forwardRate = 1e0 min-1
+	atc_induction.backwardRate = 50 min-1
+
+	RULE lac_dimerization : LacI + LacI <-> LacI~LacI
+	lac_dimerization.forwardRate = 1e0 min-1
+	lac_dimerization.backwardRate = 125 min-1
+
+	RULE cI_dimerization : CI + CI <-> CI~CI
+	cI_dimerization.forwardRate = 1e0 min-1
+	cI_dimerization.backwardRate = 125 min-1
+
+	// cI degradation
+	RULE cI_degradation : CI ->
+	cI_degradation.forwardRate = 13.2e-1 min-1
+
+	// LacI degradation
+	RULE lac_degradation : LacI ->
+	lac_degradation.forwardRate = 13.2e-1 min-1
+
+	RULE gfp_degradation : GFP ->
+	gfp_degradation.forwardRate = 13.2e-2 min-1 // 13.216397448e-3 min-1 from Gardner data // 2.5e-2 min-1 // from Andersen et al. Appl Env Microbiol (1998) 64(6):2240-2246
+
+	repressor1 = DEVICE(
+		parts=[Plac,cI,gfp],
+		input=[LacI~LacI],
+		output=[CI,GFP]
+	)
+	{
+		rna = RNA()
+		
+		// repression
+		RULE repression : Plac + LacI~LacI <-> Plac~LacI~LacI
+		repression.forwardRate = 1e0 min-1
+		repression.backwardRate = 10 min-1
+
+		// transcription
+		RULE transcription : Plac -> Plac + rna
+		transcription.forwardRate = 1.e0 min-1
+
+		// translation
+		RULE translation : rna -> rna + CI + GFP
+		translation.forwardRate = 100 min-1
+		
+		// rna degradation
+		RULE rna_degradation : rna ->
+		rna_degradation.forwardRate = 1e-1 min-1
+	}
+
+	repressor2 = DEVICE(
+		parts=[Plambda,lacI],
+		input=[CI~CI],
+		output=[LacI]
+	)
+	{
+		rna = RNA()
+		
+		// repression
+		RULE repression : Plambda + CI~CI <-> Plambda~CI~CI
+		repression.forwardRate = 1e0 min-1
+		repression.backwardRate = 10 min-1
+
+		// transcription
+		RULE transcription : Plambda -> Plambda + rna
+		transcription.forwardRate = 1.e0 min-1
+
+		// translation
+		RULE translation : rna -> rna + LacI
+		translation.forwardRate = 100 min-1
+		
+		// rna degradation
+		RULE rna_degradation : rna ->
+		rna_degradation.forwardRate = 1e-1 min-1
+		ATGC DIRECTION : BACKWARD
+	}
+	
+	ATGC ARRANGE Plambda,Plac
+}
+
+define site typeof REGION() {
+	CELL cell = new ToggleSwitchCell()
+}

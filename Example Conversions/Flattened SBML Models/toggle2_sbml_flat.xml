@@ -1,0 +1,624 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" comp:required="true" level="3" version="1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1">
+  <model extentUnits="item" id="Flat_Model" timeUnits="second">
+    <listOfUnitDefinitions>
+      <unitDefinition id="MOLECULE">
+        <listOfUnits>
+          <unit exponent="1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="fL">
+        <listOfUnits>
+          <unit exponent="1" kind="litre" multiplier="1" scale="-15"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="transcription_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="translation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="rna_degradation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression1_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression1_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="transcription1_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="translation1_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="rna_degradation1_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression2_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="repression2_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="transcription2_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="translation2_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="rna_degradation2_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="lac_dimerization_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="lac_dimerization_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="cI_dimerization_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="cI_dimerization_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="tetR_dimerization_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+          <unit exponent="-1" kind="item" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="tetR_dimerization_reverse">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="cI_degradation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="lac_degradation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="tetR_degradation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="gfp_degradation_forward">
+        <listOfUnits>
+          <unit exponent="-1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment constant="true" id="Flat_Model_compartment" size="1" units="fL"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Plac_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Plambda_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Ptet_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_cI_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_lacI_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_tetR_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_gfp_molecule" initialAmount="1" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_LacI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_CI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_TetR_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_GFP_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_LacI_site_cell_LacI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_CI_site_cell_CI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_TetR_site_cell_TetR_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_operon1_rna_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Plac_site_cell_LacI_site_cell_LacI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_operon_2_rna_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Plambda_site_cell_CI_site_cell_CI_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_operon_3_rna_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+      <species boundaryCondition="false" compartment="Flat_Model_compartment" constant="false" hasOnlySubstanceUnits="true" id="site_cell_Ptet_site_cell_TetR_site_cell_TetR_molecule" initialAmount="0" substanceUnits="MOLECULE"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="repression" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Plac_molecule"/>
+          <speciesReference constant="false" species="site_cell_LacI_site_cell_LacI_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Plac_site_cell_LacI_site_cell_LacI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> forward_rate </ci>
+                  <ci> site_cell_Plac_molecule </ci>
+                </apply>
+                <ci> site_cell_LacI_site_cell_LacI_molecule </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_Plac_site_cell_LacI_site_cell_LacI_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="repression_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="repression_reverse" value="0.16666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="transcription" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Plac_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Plac_molecule"/>
+          <speciesReference constant="false" species="site_cell_operon1_rna_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_Plac_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="transcription_forward" value="0.016666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="translation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon1_rna_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_operon1_rna_molecule"/>
+          <speciesReference constant="false" species="site_cell_TetR_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon1_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="translation_forward" value="1.6666666666666667"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="rna_degradation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon1_rna_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon1_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="rna_degradation_forward" value="0.0016666666666666668"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="repression1" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Plambda_molecule"/>
+          <speciesReference constant="false" species="site_cell_CI_site_cell_CI_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Plambda_site_cell_CI_site_cell_CI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> forward_rate </ci>
+                  <ci> site_cell_Plambda_molecule </ci>
+                </apply>
+                <ci> site_cell_CI_site_cell_CI_molecule </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_Plambda_site_cell_CI_site_cell_CI_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="repression1_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="repression1_reverse" value="0.16666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="transcription1" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Plambda_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Plambda_molecule"/>
+          <speciesReference constant="false" species="site_cell_operon_2_rna_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_Plambda_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="transcription1_forward" value="0.016666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="translation1" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon_2_rna_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_operon_2_rna_molecule"/>
+          <speciesReference constant="false" species="site_cell_LacI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon_2_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="translation1_forward" value="1.6666666666666667"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="rna_degradation1" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon_2_rna_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon_2_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="rna_degradation1_forward" value="0.0016666666666666668"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="repression2" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Ptet_molecule"/>
+          <speciesReference constant="false" species="site_cell_TetR_site_cell_TetR_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Ptet_site_cell_TetR_site_cell_TetR_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> forward_rate </ci>
+                  <ci> site_cell_TetR_site_cell_TetR_molecule </ci>
+                </apply>
+                <ci> site_cell_Ptet_molecule </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_Ptet_site_cell_TetR_site_cell_TetR_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="repression2_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="repression2_reverse" value="0.16666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="transcription2" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_Ptet_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_Ptet_molecule"/>
+          <speciesReference constant="false" species="site_cell_operon_3_rna_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_Ptet_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="transcription2_forward" value="0.016666666666666666"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="translation2" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon_3_rna_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_operon_3_rna_molecule"/>
+          <speciesReference constant="false" species="site_cell_CI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon_3_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="translation2_forward" value="1.6666666666666667"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="rna_degradation2" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_operon_3_rna_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_operon_3_rna_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="rna_degradation2_forward" value="0.0016666666666666668"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="lac_dimerization" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_LacI_molecule"/>
+          <speciesReference constant="false" species="site_cell_LacI_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_LacI_site_cell_LacI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> forward_rate </ci>
+                <apply>
+                  <power/>
+                  <ci> site_cell_LacI_molecule </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_LacI_site_cell_LacI_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="lac_dimerization_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="lac_dimerization_reverse" value="2.0833333333333335"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="cI_dimerization" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_CI_molecule"/>
+          <speciesReference constant="false" species="site_cell_CI_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_CI_site_cell_CI_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> forward_rate </ci>
+                <apply>
+                  <power/>
+                  <ci> site_cell_CI_molecule </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_CI_site_cell_CI_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="cI_dimerization_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="cI_dimerization_reverse" value="2.0833333333333335"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="tetR_dimerization" reversible="true" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_TetR_molecule"/>
+          <speciesReference constant="false" species="site_cell_TetR_molecule"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="false" species="site_cell_TetR_site_cell_TetR_molecule"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> forward_rate </ci>
+                <apply>
+                  <power/>
+                  <ci> site_cell_TetR_molecule </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci> reverse_rate </ci>
+                <ci> site_cell_TetR_site_cell_TetR_molecule </ci>
+              </apply>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="tetR_dimerization_forward" value="2.7675647718783536E-11"/>
+            <localParameter id="reverse_rate" units="tetR_dimerization_reverse" value="2.0833333333333335"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="cI_degradation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_CI_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_CI_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="cI_degradation_forward" value="0.022000000000000002"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="lac_degradation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_LacI_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_LacI_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="lac_degradation_forward" value="0.022000000000000002"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="tetR_degradation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_TetR_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_TetR_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="tetR_degradation_forward" value="0.022000000000000002"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction compartment="Flat_Model_compartment" fast="false" id="gfp_degradation" reversible="false" sboTerm="SBO:0000412">
+        <listOfReactants>
+          <speciesReference constant="false" species="site_cell_GFP_molecule"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> forward_rate </ci>
+              <ci> site_cell_GFP_molecule </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="forward_rate" units="gfp_degradation_forward" value="0.0022"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

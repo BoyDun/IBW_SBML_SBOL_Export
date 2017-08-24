@@ -423,19 +423,6 @@ public class SBOL_Export {
 							URI.create("http://identifiers.org/biomodels.sbo/SBO:0000010"));
 					String type = reactant.getBiologicalType();
 					if (type != null && isDNA(type) && inPartLists.contains(molecularID)) {
-//						Boolean instantiated = false;
-//						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
-//							URI reactantURI = null;
-//							try {
-//								reactantURI = new URI(reactant.getURI());
-//							} catch (URISyntaxException e) {
-//								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
-//								e.printStackTrace();
-//							}
-//							if (cellPart.getIdentity() == reactantURI)
-//								instantiated = true;
-//						}
-//						if (!instantiated)
 							throw new Exception(
 									"The DNA part " + molecularID + " appears in both a cell rule and a device part.");
 					}
@@ -450,19 +437,6 @@ public class SBOL_Export {
 							URI.create("http://identifiers.org/biomodels.sbo/SBO:0000011"));
 					String type = product.getBiologicalType();
 					if (type != null && isDNA(type) && inPartLists.contains(molecularID)) {
-//						Boolean instantiated = false;
-//						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
-//							URI productURI = null;
-//							try {
-//								productURI = new URI(product.getURI());
-//							} catch (URISyntaxException e) {
-//								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
-//								e.printStackTrace();
-//							}
-//							if (cellPart.getIdentity() == productURI)
-//								instantiated = true;
-//						}
-//						if (!instantiated)
 							throw new Exception(
 									"The DNA part " + molecularID + " appears in both a cell rule and a device part.");
 					}

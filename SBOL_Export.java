@@ -19,6 +19,7 @@ import org.sbolstandard.core2.Module;
 import org.sbolstandard.core2.ModuleDefinition;
 import org.sbolstandard.core2.OrientationType;
 import org.sbolstandard.core2.RefinementType;
+import org.sbolstandard.core2.RestrictionType;
 import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.Sequence;
 import org.sbolstandard.core2.SequenceAnnotation;
@@ -64,6 +65,11 @@ public class SBOL_Export {
 		return displayId;
 	}
 
+	private static boolean isDNA(String type) {
+		return type.equals("PROMOTER") || type.equals("GENE") 
+				|| type.equals("RBS") || type.equals("TERMINATOR");
+	}
+	
 	/**
 	 * This function creates or finds a component definition for a MolecularSpecies
 	 * given certain parameters, which include the MolecularSpecies' bioType that is
@@ -85,9 +91,11 @@ public class SBOL_Export {
 	 * @return the fetched or newly created component definition
 	 * @throws Exception
 	 */
-	private static ComponentDefinition createCompDef(SBOLDocument doc, String displayID, String bioType, URI type,
+	private static ComponentDefinition createCompDef(SBOLDocument doc, String displayID, String bioType, URI componentType,
 			String wasDerived, Boolean reportMissing) throws Exception {
 		URI role = null;
+		
+		URI type = componentType;
 		if (type == null) {
 			if (bioType != null) {
 				switch (bioType) {
@@ -101,6 +109,7 @@ public class SBOL_Export {
 					case "INTEGER": { throw new Exception("Integer type not allowed in molecule " + displayID); }
 					case "RATE": { throw new Exception("Rate type not allowed in molecule " + displayID); }
 					case "RBS": { type = ComponentDefinition.DNA; role = SequenceOntology.RIBOSOME_ENTRY_SITE; break; }
+					case "PROMOTER": { type = ComponentDefinition.DNA; role = SequenceOntology.PROMOTER; break; }
 					case "TERMINATOR": { type = ComponentDefinition.DNA; role = SequenceOntology.TERMINATOR; break; }
 					case "CLONINGSITE": { type = ComponentDefinition.DNA; role = URI.create("http://identifiers.org/so/SO:0001687"); break; }
 					default: { type = ComponentDefinition.SMALL_MOLECULE; break; }
@@ -149,7 +158,7 @@ public class SBOL_Export {
 	}
 
 	/**
-	 * This function adds a subcomponent definition, subcomponent, and sequence
+	 * This function creates a subcomponent definition and adds a subcomponent and sequence
 	 * annotation to a component definition it takes in with specified parameters.
 	 * 
 	 * @param compDef
@@ -160,7 +169,7 @@ public class SBOL_Export {
 	 * @param version
 	 * @throws Exception
 	 */
-	private static void addSubcomponent(ComponentDefinition compDef, SBOLDocument document, Biopart part, int direction,
+	private static void addPartComponent(ComponentDefinition compDef, SBOLDocument document, Biopart part, int direction,
 			int sequenceStart, int sequenceEnd, String wasDerived) throws Exception {
 
 		String partName = fixDisplayID(part.getName());
@@ -247,6 +256,7 @@ public class SBOL_Export {
 			device.createFunctionalComponent(partListID, AccessType.PRIVATE, partListID, DirectionType.NONE);
 
 			if (bCell != null) {
+				// Add DNA parts in a biocompiled model
 				for (BiocompilerDevice bDevice : bCell.getDevices()) {
 					if (bDevice.getName().equals(d.getDisplayName())) {
 						int direction = bDevice.getDirection().value();
@@ -268,14 +278,13 @@ public class SBOL_Export {
 								}
 							}
 							int seqLength = part.getSequence().length();
-							addSubcomponent(partList, document, part, direction, sequenceStart,
+							addPartComponent(partList, document, part, direction, sequenceStart,
 									sequenceStart + seqLength - 1, wasDerived);
 							// Update the start index to reflect the next part we're iterating through
 							sequenceStart = sequenceStart + seqLength;
 						}
 
-						// Store the overall nucleotide sequence in the overall component definition of
-						// the cell
+						// Store the overall nucleotide sequence in the overall component definition of the cell
 						String stringSeq = partList.getImpliedNucleicAcidSequence();
 						Sequence wholeSequence = document.createSequence(deviceName + "_sequence", version, stringSeq,
 								Sequence.IUPAC_DNA);
@@ -284,7 +293,20 @@ public class SBOL_Export {
 					}
 				}
 			}
-
+			else {
+				// Add DNA parts in a non-biocompiled model
+				String previous = null, current = null;
+				for (MolecularSpecies ms : d.getPartList()) {
+					current = fixDisplayID(ms.getDisplayName());
+					partList.createComponent(current + "_subcomponent", AccessType.PRIVATE, current);
+					if (previous != null) {
+						partList.createSequenceConstraint(previous + "_" + current + "_constraint",
+								RestrictionType.PRECEDES, previous + "_subcomponent", current + "_subcomponent");
+					}
+					previous = current;
+				}
+			}
+			
 			// Map device inputs and outputs to cell molecules via MapTos
 			for (MolecularSpecies ms : d.getInputList()) {
 				String molecularID = fixDisplayID(ms.getDisplayName());
@@ -294,7 +316,7 @@ public class SBOL_Export {
 				module.createMapsTo(molecularID, RefinementType.VERIFYIDENTICAL, molecularID, f.getDisplayId());
 				Interaction in = device.createInteraction(molecularID + "_interaction",
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000168"));
-				in.createParticipation(molecularID + "_modifier", molecularID,
+				in.createParticipation(molecularID + "_modifier", inputName,
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000019"));
 				in.createParticipation(partListID + "_modified", partListID,
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000644"));
@@ -307,7 +329,7 @@ public class SBOL_Export {
 				module.createMapsTo(molecularID, RefinementType.VERIFYIDENTICAL, molecularID, f.getDisplayId());
 				Interaction out = device.createInteraction(outputName + "_interaction",
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000589"));
-				out.createParticipation(molecularID + "_product", molecularID,
+				out.createParticipation(molecularID + "_product", outputName,
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000011"));
 				out.createParticipation(partListID + "_template", partListID,
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000645"));
@@ -355,7 +377,7 @@ public class SBOL_Export {
 				cellMolecules.add(molecularID);
 				String type = ms.getBiologicalType();
 				createCompDef(document, molecularID, type, null, ms.getURI(), false);
-				if (type == null || !type.equals("DNA")) {
+				if (type == null || !isDNA(type)) {
 					cell.createFunctionalComponent(molecularID, AccessType.PUBLIC, molecularID, version,
 							DirectionType.NONE);
 				}
@@ -363,28 +385,31 @@ public class SBOL_Export {
 
 			convertDevices(c.getDeviceList(), c.getMoleculeList(), cell, document, bCell);
 
+			HashSet<String> inPartLists = new HashSet<String>();
 			// Instantiate DNA components that haven't been instantiated in a device
-			for (MolecularSpecies ms : c.getMoleculeList()) {
-				String molecularID = fixDisplayID(ms.getID());
+			for (MolecularSpecies m1 : c.getMoleculeList()) {
 				Boolean instantiated = false;
-				if (ms.getBiologicalType().equals("DNA")) {
-					for (Module device : cell.getModules()) {
-						for (FunctionalComponent partList : device.getDefinition().getFunctionalComponents()) {
-							for (Component subPart : partList.getDefinition().getComponents()) {
-								if (subPart.getDisplayId().equals(molecularID))
-									instantiated = true;
+				if (isDNA(m1.getBiologicalType())) {
+					for (Device d : c.getDeviceList()) {
+						for (MolecularSpecies m2 : d.getPartList()) {
+							if(m1.getDisplayName().equals(m2.getDisplayName())) {
+								instantiated = true;
 							}
 						}
 					}
-					if (!instantiated)
+					String molecularID = fixDisplayID(m1.getDisplayName());
+					if (!instantiated) {
 						cell.createFunctionalComponent(molecularID, AccessType.PRIVATE, molecularID,
 								DirectionType.NONE);
+					} 
+					else {
+						inPartLists.add(molecularID);
+					}
 				}
 			}
 
-			// Map rules to interactions. If a DNA component appears in a rule but has not
-			// been instantiated in the cell,
-			// it has already been defined in a device, which is not allowed.
+			// Map rules to interactions. A DNA component is not allowed to appear in both
+			// a rule and a device partList.
 			for (Rule r : c.getRuleList()) {
 				Interaction interaction = cell.createInteraction(fixDisplayID(r.getDisplayName()),
 						URI.create("http://identifiers.org/biomodels.sbo/SBO:0000176"));
@@ -397,20 +422,20 @@ public class SBOL_Export {
 					interaction.createParticipation(molecularID + "_reactant", molecularID,
 							URI.create("http://identifiers.org/biomodels.sbo/SBO:0000010"));
 					String type = reactant.getBiologicalType();
-					if (type != null && type.equals("DNA")) {
-						Boolean instantiated = false;
-						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
-							URI reactantURI = null;
-							try {
-								reactantURI = new URI(reactant.getURI());
-							} catch (URISyntaxException e) {
-								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
-								e.printStackTrace();
-							}
-							if (cellPart.getIdentity() == reactantURI)
-								instantiated = true;
-						}
-						if (!instantiated)
+					if (type != null && isDNA(type) && inPartLists.contains(molecularID)) {
+//						Boolean instantiated = false;
+//						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
+//							URI reactantURI = null;
+//							try {
+//								reactantURI = new URI(reactant.getURI());
+//							} catch (URISyntaxException e) {
+//								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
+//								e.printStackTrace();
+//							}
+//							if (cellPart.getIdentity() == reactantURI)
+//								instantiated = true;
+//						}
+//						if (!instantiated)
 							throw new Exception(
 									"The DNA part " + molecularID + " appears in both a cell rule and a device part.");
 					}
@@ -424,20 +449,20 @@ public class SBOL_Export {
 					interaction.createParticipation(molecularID + "_product", molecularID,
 							URI.create("http://identifiers.org/biomodels.sbo/SBO:0000011"));
 					String type = product.getBiologicalType();
-					if (type != null && type.equals("DNA")) {
-						Boolean instantiated = false;
-						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
-							URI productURI = null;
-							try {
-								productURI = new URI(product.getURI());
-							} catch (URISyntaxException e) {
-								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
-								e.printStackTrace();
-							}
-							if (cellPart.getIdentity() == productURI)
-								instantiated = true;
-						}
-						if (!instantiated)
+					if (type != null && isDNA(type) && inPartLists.contains(molecularID)) {
+//						Boolean instantiated = false;
+//						for (FunctionalComponent cellPart : cell.getFunctionalComponents()) {
+//							URI productURI = null;
+//							try {
+//								productURI = new URI(product.getURI());
+//							} catch (URISyntaxException e) {
+//								System.out.println("URI unable to be generated for molecule " + cellPart.getName());
+//								e.printStackTrace();
+//							}
+//							if (cellPart.getIdentity() == productURI)
+//								instantiated = true;
+//						}
+//						if (!instantiated)
 							throw new Exception(
 									"The DNA part " + molecularID + " appears in both a cell rule and a device part.");
 					}

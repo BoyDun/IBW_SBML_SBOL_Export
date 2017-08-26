@@ -3,15 +3,15 @@ The Infobiotics Workbench (IBW) is a modeling tool that provides stochastic simu
 ## My Work
 To enhance its compatibility with biological modeling standards, I present two functions that are able to parse an Eclipse Modeling Framework model built from IBL into either a SBOL or SBML document. The SBOL model accurately captures high-level interactions and sequence and structural information, while the SBML model maintains functional components including amounts and kinetic laws. A combination of the two comprehensively captures every aspect of an IBL model. The EMF model to be converted can also be preprocessed via biocompilation or flattening, both of which I account for during conversion. The logical step forward is to implement an import functionality that will allow for the generation of IBL models from external SBOL and SBML documents.
 * [Biocompiler.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/Biocompiler.xtend) - I removed the original, bare-bones SBOL export code from this file. I updated the rest of the file to run on the version 2 SBOL library, and I implemented sequence fetching from the SynBioHub SBOL repository.
-* [BypassGUI.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/BypassGUI.xtend) - 
-* [SBMLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportInterface.java)
-* [SBMLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizard.java)
-* [SBMLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizardPage.java)
-* [SBML_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBML_Export.java)
-* [SBOLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportInterface.java)
-* [SBOLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizard.java)
-* [SBOLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizardPage.java)
-* [SBOL_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOL_Export.java)
+* [BypassGUI.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/BypassGUI.xtend) - I updated this file to run on the version 2 SBOL library instead of version 1.
+* [SBMLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportInterface.java) - I created this file to interface between the UI and the actual SBML conversion function. It fetches the correct model resource to convert and either converts a flattened or hierarchical EMF model depending on the user's choice.
+* [SBMLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizard.java) - I copied this file from the SBOLExportWizard.java file that Laurentiu created. I made some minor edits to the names to reference SBML instead of SBOL. This file encodes the underlying framework for the SBML Export Wizard.
+* [SBMLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizardPage.java) - Laurentiu created the method headers, but I implemented them. This file specifies the relevant input fields the user needs to fill in order to convert an EMF model into SBML.
+* [SBML_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBML_Export.java) - I created this file to convert an EMF model into a SBML model.
+* [SBOLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportInterface.java) - I created this file to interface between the UI and the actual SBOL conversion function. It fetches the correct model resource to convert and optionally biocompiles the EMF model before conversion.
+* [SBOLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizard.java) - Written entirely by Laurentiu Mierla. This file encodes the underlying framework for the SBOL Export Wizard.
+* [SBOLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizardPage.java) - Laurentiu created the method headers, but I implemented them. This file specifies the relevant input fields the user needs to fill in order to convert an EMF model into SBOL.
+* [SBOL_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOL_Export.java) - I created this file to convert an EMF model into a SBOL model.
 ## Running the Code
 These files won't be runnable until Infobiotics Workbench is made open-source pending publication. However, you can currently access the executable software at LINK. In order to use my conversion functionality in its native application, navigate to File->Export->SBOL/SBML.
 ## Examples

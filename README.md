@@ -12,8 +12,6 @@ To enhance its compatibility with biological modeling standards, I present two f
 * [SBOLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizard.java)
 * [SBOLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizardPage.java)
 * [SBOL_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOL_Export.java)
-
-Supplementary code that I’ve written includes an export wizard for the user to interface with the conversion functionality and a function to fetch Synbiohub SBOL sequences from any relevant URIs provided in the IBL model to be compiled. I use the JSBML library for SBML conversion and updated the existing SBOL library to libSBOLj 2.0.
 ## Running the Code
 These files won't be runnable until Infobiotics Workbench is made open-source pending publication. However, you can currently access the executable software at LINK. In order to use my conversion functionality in its native application, navigate to File->Export->SBOL/SBML.
 ## Examples

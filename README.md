@@ -14,6 +14,7 @@ You can access example IBL documents in the "Example Conversions" directory. Sim
 ## Authors
 * Peter Dun, bodun@stanford.edu
 
+You can view my GSoC blog at https://peterdun.wordpress.com/, where I documented my weekly progress on this project.
 Feel free to reach out with any questions, comments, suggestions, bug reports, etc.
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/LICENSE) file for more details.

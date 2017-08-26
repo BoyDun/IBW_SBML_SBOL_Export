@@ -19,7 +19,7 @@ You can access example IBL documents in the "Example Conversions" directory. Sim
 ## Built With
 * [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)
 * [JSBML](https://github.com/sbmlteam/jsbml)
-## Authors
+## Author
 * Peter Dun, bodun@stanford.edu
 
 You can view my GSoC blog at https://peterdun.wordpress.com/, where I documented my weekly progress on this project.

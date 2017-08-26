@@ -12,6 +12,8 @@ To enhance its compatibility with biological modeling standards, I present two f
 * [SBOLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizard.java) - Written entirely by Laurentiu Mierla. This file encodes the underlying framework for the SBOL Export Wizard.
 * [SBOLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizardPage.java) - This file specifies the relevant input fields the user needs to fill in order to convert an EMF model into SBOL. Laurentiu created the method headers.
 * [SBOL_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOL_Export.java) - This file converts an EMF model into a SBOL model.
+## Next Steps
+Next steps include implementing SBOL/SBML import into IBL, but that requires creating an additional function that can convert the Eclipse Modeling Framework IBL model back into a document. Another challenge is to properly handle missing information from either the SBOL or SBML side since neither standard captures every aspect of IBL.
 ## Running the Code
 These files won't be runnable until Infobiotics Workbench is made open-source pending publication. However, you can currently access the executable software at LINK. In order to use my conversion functionality in its native application, navigate to File->Export->SBOL/SBML.
 ## Examples
@@ -22,7 +24,7 @@ You can access example IBL documents in the "Example Conversions" directory. Sim
 ## Author
 * Peter Dun, bodun@stanford.edu
 
-You can view my GSoC blog at https://peterdun.wordpress.com/, where I documented my weekly progress on this project.
+Read my [GSoC blog](https://peterdun.wordpress.com/), where I documented my weekly progress on this project.
 Feel free to reach out with any questions, comments, suggestions, bug reports, etc.
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/LICENSE) file for more details.

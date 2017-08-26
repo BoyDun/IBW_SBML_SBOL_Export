@@ -2,17 +2,16 @@
 The Infobiotics Workbench (IBW) is a modeling tool that provides stochastic simulations that mimic the procession of complex biological pathways, verification of simulation rulesets, and biomatter compilation. More specifically, the process of biomatter compilation (biocompilation) includes arranging biological parts, fetching their DNA sequences, inserting cloning sites, and calculating optimal ribosome-binding sites based on user constraints of positioning. Simulations and biocompilation are driven by designs written in the domain-specific Infobiotics Language (IBL).
 ## My Work
 To enhance its compatibility with biological modeling standards, I present two functions that are able to parse an Eclipse Modeling Framework model built from IBL into either a SBOL or SBML document. The SBOL model accurately captures high-level interactions and sequence and structural information, while the SBML model maintains functional components including amounts and kinetic laws. A combination of the two comprehensively captures every aspect of an IBL model. The EMF model to be converted can also be preprocessed via biocompilation or flattening, both of which I account for during conversion. The logical step forward is to implement an import functionality that will allow for the generation of IBL models from external SBOL and SBML documents.
-* [Biocompiler.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/Biocompiler.xtend)
-I removed the original, bare-bones SBOL export code from this file. I updated the rest of the file to run on the version 2 SBOL library, and I implemented sequence fetching from the SynBioHub SBOL repository.
-* [JSBML](https://github.com/sbmlteam/jsbml)
-* [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)
-* [JSBML](https://github.com/sbmlteam/jsbml)
-* [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)
-* [JSBML](https://github.com/sbmlteam/jsbml)
-* [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)
-* [JSBML](https://github.com/sbmlteam/jsbml)
-* [libSBOLj 2.0](https://github.com/SynBioDex/libSBOLj)
-* [JSBML](https://github.com/sbmlteam/jsbml)
+* [Biocompiler.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/Biocompiler.xtend) - I removed the original, bare-bones SBOL export code from this file. I updated the rest of the file to run on the version 2 SBOL library, and I implemented sequence fetching from the SynBioHub SBOL repository.
+* [BypassGUI.xtend](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/BypassGUI.xtend) - 
+* [SBMLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportInterface.java)
+* [SBMLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizard.java)
+* [SBMLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBMLExportWizardPage.java)
+* [SBML_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBML_Export.java)
+* [SBOLExportInterface.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportInterface.java)
+* [SBOLExportWizard.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizard.java)
+* [SBOLExportWizardPage.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOLExportWizardPage.java)
+* [SBOL_Export.java](https://github.com/BoyDun/IBW_SBML_SBOL_Export/blob/master/SBOL_Export.java)
 
 Supplementary code that I’ve written includes an export wizard for the user to interface with the conversion functionality and a function to fetch Synbiohub SBOL sequences from any relevant URIs provided in the IBL model to be compiled. I use the JSBML library for SBML conversion and updated the existing SBOL library to libSBOLj 2.0.
 ## Running the Code

@@ -15,7 +15,7 @@ To enhance its compatibility with biological modeling standards, I present two f
 ## Next Steps
 Next steps include implementing SBOL/SBML import into IBL, but that requires creating an additional function that can convert the Eclipse Modeling Framework IBL model back into a document. Another challenge is to properly handle missing information from either the SBOL or SBML side since neither standard captures every aspect of IBL.
 ## Running the Code
-These files won't be runnable until Infobiotics Workbench is made open-source pending publication. However, you can currently access the [executable software](ico2s.org/data/code/IBW-1.0.0.tar.gz) in order to use my conversion functionality. Just navigate to File->Export->SBOL/SBML.
+These files won't be runnable until Infobiotics Workbench is made open-source pending publication. However, you can currently access the [executable software](https://ico2s.org/data/code/IBW-1.0.0.tar.gz) in order to use my conversion functionality. Just navigate to File->Export->SBOL/SBML.
 ## Examples
 You can access example IBL documents in the "Example Conversions" directory. Simply open one in the IBW executable and follow the previous steps to convert it into an SBML or SBOL model. The subdirectories in "Example Conversions" contain the converted versions of the IBL example documents.
 ## Built With

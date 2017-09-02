@@ -1,6 +1,5 @@
 # SBML and SBOL Model Export from the Infobiotics Workbench
-### Note
-The commit history only reflects the most recent changes. Most of the work was done offline since Infobiotics Workbench isn't available on Github.
+NOTE: The commit history only reflects the most recent changes. Most of my work was done offline since Infobiotics Workbench isn't available on Github.
 
 The Infobiotics Workbench (IBW) is a modeling tool that provides stochastic simulations that mimic the procession of complex biological pathways, verification of simulation rulesets, and biomatter compilation. More specifically, the process of biomatter compilation (biocompilation) includes arranging biological parts, fetching their DNA sequences, inserting cloning sites, and calculating optimal ribosome-binding sites based on user constraints of positioning. Simulations and biocompilation are driven by designs written in the domain-specific Infobiotics Language (IBL).
 ## My Work
